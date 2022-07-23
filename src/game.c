@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <assert.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
-#include "misc.h"
 #include "game.h"
 
 #define GET_RAND_LUT_STR(lut) \
 	lut[rand() % (sizeof(lut) / sizeof(char *))];
+
+void get_user_input(char *into);
 
 static const char *places[] = {
 	"The pagoda that holds the Biggest Ball of Twine in Minnesota",
@@ -64,25 +63,9 @@ void init_context(context_t *self) {
 	self->input_creature_type = -1;
 }
 
-context_t *a_init_context() {
-	context_t *c = malloc(sizeof(context_t));
-	init_context(c);
-	return c;
-}
-
 void deinit_context(context_t *self) {
 	free(self->character_name);
 }
-
-void f_deinit_context(context_t *self) {
-	deinit_context(self);
-	free(self);
-}
-
-void get_user_input(char *into);
-void name_character(context_t *c);
-void story_telling(context_t *c);
-void creature_fight_sequence(context_t *c);
 
 // ====================================================
 
@@ -177,7 +160,7 @@ j_user_action_input:
 				{
 					printf("%s seems to follow the %s's movements better this attack\n", c->character_name, enemy.name);
 				}
-				if (rand() % 100 >= creature_dodge_chance_percents[enemy.type] && (!(statmod & e_player_statmod_dodge_success) || rand() % 100 >= creature_dodge_chance_percents[enemy.type]))
+				if (rand() % 100 >= enemy.dodge_chance_percent && (!(statmod & e_player_statmod_dodge_success) || rand() % 100 >= enemy.dodge_chance_percent))
 				{
 					int output_damage = c->character_dmg_per_attack;
 					if (statmod & e_player_statmod_focus)

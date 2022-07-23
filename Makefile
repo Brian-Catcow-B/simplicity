@@ -8,13 +8,13 @@ INCLUDE = inc
 OBJ = objects
 BIN = bin
 
-SRC_FILES = $(SRC)/game.c $(SRC)/misc.c $(SRC)/creature.c
 OBJ_FILES = $(OBJ)/game.o $(OBJ)/misc.o $(OBJ)/creature.o
 
 all: mkdirs $(PROJECT)
 
-$(PROJECT): $(OBJ_FILES) $(SRC)/main.c
-	$(CC) -c $(OBJ_FILES) -o $(PROJECT) $^
+$(PROJECT): $(OBJ_FILES) $(OBJ)/main.o
+	$(CC) -o $(PROJECT) $^
+	mv $(PROJECT) $(BIN)/
 
 mkdirs:
 	mkdir -p $(SRC)
@@ -24,6 +24,10 @@ mkdirs:
 $(OBJ)/%.o: $(SRC)/%.c $(SRC)/%.h
 	$(CC) $(CFLAGS) -c $^
 	mv *.o $(OBJ)/
+
+$(OBJ)/main.o: $(SRC)/main.c
+	$(CC) $(CFLAGS) -c $^
+	mv main.o $(OBJ)/
 
 clean:
 	rm -rf $(OBJ)/* $(BIN)/*

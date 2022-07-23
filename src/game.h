@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "creature.h"
+#include "misc.h"
 
 typedef enum e_state_t {
 	e_state_naming_character,
@@ -22,6 +23,11 @@ typedef struct context_t {
 } context_t;
 
 void init_context(context_t *self);
+void deinit_context(context_t *self);
+
+void name_character(context_t *c);
+void story_telling(context_t *c);
+void creature_fight_sequence(context_t *c);
 
 #endif // GAME_H
 

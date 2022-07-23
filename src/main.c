@@ -1,6 +1,13 @@
+#include <assert.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "misc.h"
 #include "game.h"
-#include <stdlib.h>
+#include "creature_luts.h"
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
@@ -51,3 +58,13 @@ break_case_e:
 			case e_state_fighting_creature:
 				creature_fight_sequence(&c);
 				break;
+			case e_state_exiting:
+				goto clean_exit;
+		}
+	}
+
+clean_exit:
+	deinit_context(&c);
+	return EXIT_SUCCESS;
+}
+

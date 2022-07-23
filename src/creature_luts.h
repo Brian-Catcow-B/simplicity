@@ -38,6 +38,17 @@ static const int creature_min_dpas[] = {
 	9,
 	20,
 	1,
+	15,
+};
+
+static const int creature_max_dpas[] = {
+	15,
+	30,
+	35,
+	69,
+	50,
+	5,
+	30,
 };
 
 static const int creature_dodge_chance_percents[] = {
