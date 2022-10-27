@@ -14,7 +14,7 @@ static const char *places[] = {
 	"The pagoda that holds the Biggest Ball of Twine in Minnesota",
 	"Wisconsin",
 	"Russia",
-	"a box under the stairs in the corner of the basement of the house half a block down the street from Jerry's Bait Shop",
+	"A box under the stairs in the corner of the basement of the house half a block down the street from Jerry's Bait Shop",
 };
 
 static const char *person_titles[] = {
@@ -38,15 +38,15 @@ static const char *describers[] = {
 
 static const char *careless_verbs[] = {
 	"strolling along a path",
-	"hanging out in a brothel",
+	"hanging out at a Browns game (rip)",
 	"playing Minecraft",
-	"coding a hentai game",
-	"thinking about big mommy milkers",
+	"coding a text based adventure game",
+	"thinking about making the big bucks",
 	"counting to one million for the third time that day",
-	"constructing new ligma jokes",
+	"constructing new dad jokes",
 	"daydreaming in the car",
 	"drinking gamer fuel",
-	"picking up beach babes",
+	"picking up beach ladies",
 };
 
 // =============================================
@@ -118,8 +118,6 @@ void debug_print_player_statmod(e_player_statmod_t s) {
 	printf("\traisedef:\t%d\n", (s & e_player_statmod_raisedef) != 0);
 	printf("\n");
 }
-
-void fight_sequence_start(context_t *c);
 
 void creature_fight_sequence(context_t *c) {
 	creature_t enemy;
@@ -261,9 +259,5 @@ j_user_action_input:
 	sleep(c->text_pause_length_s);
 	c->state = e_state_exiting;
 	c->enemy_creature = NULL;
-}
-
-void fight_creature_start(context_t *c) {
-
 }
 
